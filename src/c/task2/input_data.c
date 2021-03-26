@@ -10,8 +10,8 @@
 
 
 int input_data(int (input)(const char *__restrict __format, ...),int (out)(const char *__restrict __format, ...)){
-  int number = 2;
-  if(input("%d",&number) != 1){
+    unsigned long number = 2;
+  if(input("%ld",&number) != 1){
       return -1;
   }
   struct ThreadStruct ts= {number,0};
