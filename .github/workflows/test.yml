@@ -1,0 +1,33 @@
+name: Build
+
+on:  [pull_request, push]
+
+  
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: .
+
+  # Configuration type to build.
+  # You can convert this to a build matrix if you need coverage of multiple configuration types.
+  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  BUILD_CONFIGURATION: Release
+
+jobs:
+ build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install gtest manually
+        run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp ./lib/libgtest*.a /usr/lib  && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+      - uses: actions/checkout@v1
+      - name: configure
+        run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" ..
+      - name: make
+        run: cd build && make
+      - name: Run Test
+        run: /home/runner/work/tech-C-task2/tech-C-task2/build/test_program --gtest_filter=* --gtest_color=no
+      - name: Run codecov
+        uses: codecov/codecov-action@v1
+        with :
+          token : ${{secrets.CODECOV_TOKEN}}
+        
