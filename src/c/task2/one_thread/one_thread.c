@@ -8,7 +8,7 @@
 
 void one_thread(struct Data* one_thread,func_test func, void* arg){
    double diff_sum = 0;
-   for(int i = 0; i < one_thread->total; i++) {
+   for(unsigned long i = 0; i < one_thread->total; i++) {
        time_t start = time(NULL);
        func(arg);
        time_t end = time(NULL);
