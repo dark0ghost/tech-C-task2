@@ -4,24 +4,23 @@
 
 
 #include "input_data.h"
-#include "thread_data.h"
-#include "one_thread.h"
-#include "test_func.h"
+#include "one_thread/one_thread.h"
+#include "test_func/test_func.h"
+#include "multi_thread/thread_data.h"
+#include <pthread.h>
 
 
-int input_data(int (input)(const char *__restrict __format, ...),int (out)(const char *__restrict __format, ...)){
+int input_data(int (input)(const char *__restrict __format, ...),int (out)(const char *__restrict __format, ...)) {
     unsigned long number = 2;
-  if(input("%ld",&number) != 1){
-      return -1;
-  }
-  struct ThreadStruct ts= {number,0};
-  thread_start(&ts,test_func);
-  out("multi thread %f",ts.diff_time);
+    if (input("%ld", &number) != 1) {
+        return -1;
+    }
+    struct Data data = {6, 0};
+    struct MainStruct main_struct = {number, &data};
+    one_thread(&data, test_func, &main_struct);
+    out("one thread %f\n", data.diff_time);
 
-  struct OneThread ot = {number, 0};
-  one_thread(&ot,test_func);
-  out("one thread %f",ts.diff_time);
-
-
-  return 0;
+    thread_start(&data, test_func, &number);
+    out("multi thread %f", data.diff_time);
+    pthread_exit(NULL);
 }

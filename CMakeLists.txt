@@ -6,7 +6,7 @@ set(CMAKE_C_STANDARD 11)
 #set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 #set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
-
+set(CMAKE_CXX_FLAGS "-Wall -Werror -Wpedantic")
 include(ExternalProject)
 ExternalProject_Add(gtest
         URL https://github.com/google/googletest/archive/release-1.10.0.zip
@@ -19,7 +19,7 @@ enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIR})
 
-add_executable(tech_c src/c/main.c src/c/task2/input_data.c src/c/task2/input_data.h src/c/task2/thread_data.c src/c/task2/thread_data.h src/c/task2/one_thread.c src/c/task2/one_thread.h src/c/task2/func_prototype.h src/c/task2/test_func.c src/c/task2/test_func.h)
+add_executable(tech_c src/c/main.c src/c/task2/input_data.c src/c/task2/input_data.h src/c/task2/multi_thread/thread_data.c src/c/task2/multi_thread/thread_data.h src/c/task2/one_thread/one_thread.c src/c/task2/one_thread/one_thread.h src/c/task2/lib/func_prototype.h src/c/task2/test_func/test_func.c src/c/task2/test_func/test_func.h src/c/task2/lib/main_struct.h)
 
 
 add_executable(test_program src/test/test.cpp)

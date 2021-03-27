@@ -4,9 +4,9 @@
 
 extern "C" {
 
-#include "../c/task2/test_func.c"
-#include "../c/task2/one_thread.c"
-#include "../c/task2/thread_data.c"
+#include "../c/task2/test_func/test_func.c"
+#include "../c/task2/one_thread/one_thread.c"
+#include "../c/task2/multi_thread/thread_data.c"
 #include "../c/task2/input_data.c"
 }
 

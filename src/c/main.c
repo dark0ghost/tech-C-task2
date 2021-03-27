@@ -10,7 +10,7 @@
 
 int main() {
     input_data(scanf, printf);
-    return -1;
+    return 0;
 }
 
 
