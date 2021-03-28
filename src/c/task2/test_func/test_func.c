@@ -8,6 +8,8 @@
 
 
 void* test_func(void* arg){
+    if (arg == NULL)
+        return NULL;
     struct MainStruct* sz = (struct MainStruct*)arg;
     const size_t size_array =  sz->size * 1024 * 1024;
 
@@ -20,5 +22,5 @@ void* test_func(void* arg){
         test_array[i + 2] = '2';
     }
     free(test_array);
-    return NULL;
+    return sz;
 }

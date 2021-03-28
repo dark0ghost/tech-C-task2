@@ -6,7 +6,7 @@
 #define TECH_C_MAIN_STRUCT_H
 
 struct Data{
-    unsigned long total;
+    long total;
     double diff_time;
 };
 

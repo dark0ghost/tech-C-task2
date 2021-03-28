@@ -27,5 +27,5 @@ jobs:
       - name: Run Test
         run: /home/runner/work/tech-C-task2/tech-C-task2/build/test_program --gtest_filter=* --gtest_color=no
       - name: Run codecov
-        run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}}
+        run: cd .. && bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}}
         

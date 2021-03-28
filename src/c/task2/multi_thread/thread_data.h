@@ -8,5 +8,5 @@
 #include "../lib/main_struct.h"
 
 
-void thread_start(struct Data* st, func_test func, void* arg);
+extern void* thread_start(struct Data* st, func_test func, void* arg);
 #endif //TECH_C_THREAD_DATA_H
