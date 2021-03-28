@@ -25,13 +25,12 @@ jobs:
       - name: start linter
         uses: docker://github/super-linter:v2.1.0
       - name: start clang format
-        uses: DoozyX/clang-format-lint-action@v0.11
+        uses: HorstBaerbel/action-clang-format@1.4
         with:
-                  source: '.'
-                  exclude: './third_party ./external'
-                  extensions: 'h,c'
-                  clangFormatVersion: 11
-                  style: chromium
+            scandir: '.'
+            excludedirs: 'build'
+            extensions: 'c,h,C,H,cpp,hpp,cc,hh,c++,h++,cxx,hxx'
+            style: google
       - name: configure
         run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" ..
       - name: make
