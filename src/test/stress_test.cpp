@@ -8,8 +8,6 @@
 #include <dlfcn.h>
 
 extern "C" {
-#include "one_thread.h"
-#include "thread_data.h"
 }
 TEST(stress_test, tests_input) {
 }
