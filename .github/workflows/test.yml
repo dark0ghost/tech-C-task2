@@ -24,6 +24,14 @@ jobs:
           fetch-depth: 0
       - name: start linter
         uses: docker://github/super-linter:v2.1.0
+      - name: start clang format
+        uses: DoozyX/clang-format-lint-action@v0.11
+        with:
+                  source: '.'
+                  exclude: './third_party ./external'
+                  extensions: 'h,cpp'
+                  clangFormatVersion: 11
+                  style: chromium
       - name: configure
         run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" ..
       - name: make
