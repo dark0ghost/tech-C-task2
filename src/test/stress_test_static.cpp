@@ -6,10 +6,14 @@
 #include <gtest/gtest.h>
 #include <cstdlib>
 #include <dlfcn.h>
+#include <stdio.h>
+#include <zlib.h>
 
 extern "C" {
+
 }
 TEST(stress_test, tests_input) {
+
 }
 
 int main(int argc, char **argv){

@@ -15,12 +15,9 @@ void* test_func(void* arg){
 
     char* test_array = (char*)malloc(size_array * sizeof(char));
     if (test_array == NULL)
-        exit(-1);
-    for(size_t i = 0; i < size_array; i = i + 3){
-        test_array[i] = '0';
-        test_array[i + 1] = '1';
-        test_array[i + 2] = '2';
-    }
+        return NULL;
+
+    sz->set_data(test_array,size_array);
     free(test_array);
     return sz;
 }

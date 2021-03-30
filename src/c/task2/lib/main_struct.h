@@ -4,17 +4,17 @@
 
 #ifndef TECH_C_MAIN_STRUCT_H
 #define TECH_C_MAIN_STRUCT_H
-
+#include <stdio.h>
 #pragma pack(push, 1)
-struct Data{
+struct DataForFunc{
     long total;
     double diff_time;
 };
 
 struct MainStruct{
-    unsigned long size;
-    struct Data* data;
-
+    size_t size;
+    struct DataForFunc* data;
+    void (*set_data)(char*,size_t);
 };
 #pragma pack(pop)
 #endif //TECH_C_MAIN_STRUCT_H
