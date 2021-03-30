@@ -9,6 +9,9 @@
 extern void* one_thread(struct Data* one_thread,func_test func, void* arg){
    if(arg == NULL)
        return NULL;
+
+    if(one_thread == NULL)
+        return NULL;
    double diff_sum = 0;
    for(long i = 0; i < one_thread->total; i++) {
        time_t start = time(NULL);

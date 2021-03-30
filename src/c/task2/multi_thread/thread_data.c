@@ -12,6 +12,9 @@ extern void* thread_start(struct Data* st, func_test func,  void* arg){
     if(arg == NULL){
         return NULL;
     }
+
+    if(st == NULL)
+        return NULL;
     pthread_t* tid = (pthread_t*)calloc(st->total, sizeof(pthread_t));
     time_t start = time(NULL);
 
@@ -23,6 +26,6 @@ extern void* thread_start(struct Data* st, func_test func,  void* arg){
 
     time_t end = time(NULL);
 
-    st->diff_time = difftime(end, start);
+    st->diff_time = difftime(end, start) / (double)st->total;
     return NULL;
 }
