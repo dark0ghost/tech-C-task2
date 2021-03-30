@@ -31,6 +31,11 @@ jobs:
             excludedirs: 'build'
             extensions: 'c,h,C,H,cpp,hpp,cc,hh,c++,h++,cxx,hxx'
             style: google
+      - name: covarage
+        uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+             github-token: ${{ secrets.GITHUB_TOKEN }}
+             lcov-file: ./coverage/lcov.info
       - name: configure
         run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" ..
       - name: make
