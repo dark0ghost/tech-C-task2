@@ -35,8 +35,10 @@ jobs:
         run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" ..
       - name: make
         run: cd build && make
-      - name: Run Test
-        run: /home/runner/work/tech-C-task2/tech-C-task2/build/test_program --gtest_filter=* --gtest_color=no
+      - name: Run static Test
+        run: /home/runner/work/tech-C-task2/tech-C-task2/build/stress_test_static  --gtest_filter=* --gtest_color=no
+      - name: Run static Test
+        run: /home/runner/work/tech-C-task2/tech-C-task2/build/stress_test_dynamic  --gtest_filter=* --gtest_color=no
       - name: Run codecov
         run: cd .. && bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}}
         
