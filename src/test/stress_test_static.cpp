@@ -10,7 +10,7 @@
 #include <zlib.h>
 
 extern "C" {
-
+#include "start_task.h"
 }
 TEST(stress_test, tests_input) {
 

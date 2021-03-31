@@ -24,7 +24,8 @@ include_directories(${GTEST_INCLUDE_DIR})
 
 add_library(${PROJECT_NAME}_lib STATIC src/c/task2/lib/start_task.h src/c/task2/lib/main_struct.h src/c/task2/lib/one_thread/start_task.c)
 add_library(${PROJECT_NAME}_dynamic_lib SHARED src/c/task2/lib/start_task.h src/c/task2/lib/main_struct.h src/c/task2/lib/multi_thread/start_task.c)
-
+include_directories(${PROJECT_NAME}_lib src/c/task2/lib/)
+include_directories(${PROJECT_NAME}_dynamic_libsrc/c/task2/lib/)
 
 add_executable(stress_test_static src/test/stress_test_static.cpp)
 add_executable(stress_test_dynamic src/test/stress_test_dynamic.cpp)
