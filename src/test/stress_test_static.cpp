@@ -16,11 +16,18 @@ extern "C" {
 
 TEST(stress_test, tests_input) {
     long core = sysconf(_SC_NPROCESSORS_ONLN);
-    DataForFunc data = {core};
-    MainStruct test_input = {100, &data};
+
+    MainStruct test_input = {100, core};
+
     test_input.set_data = init_array;
-    start_task(test_func,&test_input);
-    std::cout << test_input.data->diff_time << std::endl;
+    double sum_diff = 0;
+    for(int i = 0; i < 100; i++) {
+        time_t start = time(nullptr);
+        start_task(test_func, &test_input);
+        time_t end = time(nullptr);
+        sum_diff += static_cast<double>(end - start);
+    }
+    std::cout << sum_diff / 100 << std::endl;
 }
 
 int main(int argc, char **argv){

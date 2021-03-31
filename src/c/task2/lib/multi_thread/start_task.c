@@ -25,6 +25,7 @@ void* start_task(void* (*func) (void*),struct MainStruct* arg){
             return NULL;
         }
     }
+
     for(long i = 0; i < arg->total; i++) {
         pthread_join(tid[i], NULL);
     }
