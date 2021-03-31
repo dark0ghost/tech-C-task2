@@ -6,14 +6,10 @@
 #define TECH_C_MAIN_STRUCT_H
 #include <stdio.h>
 #pragma pack(push, 1)
-struct DataForFunc{
-    long total;
-    double diff_time;
-};
 
 struct MainStruct{
     size_t size;
-    struct DataForFunc* data;
+    long total;
     void (*set_data)(char*,size_t);
 };
 #pragma pack(pop)
