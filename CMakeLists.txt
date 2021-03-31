@@ -9,6 +9,7 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 set(CMAKE_CXX_FLAGS "-Wall -Werror -Wpedantic -fpermissive")
 
+link_libraries(gcov)
 
 include(ExternalProject)
 ExternalProject_Add(gtest
@@ -22,19 +23,18 @@ enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIR})
 
-add_library(${PROJECT_NAME}_lib STATIC src/c/task2/lib/start_task.h src/c/task2/lib/main_struct.h src/c/task2/lib/one_thread/start_task.c)
-add_library(${PROJECT_NAME}_dynamic_lib SHARED src/c/task2/lib/start_task.h src/c/task2/lib/main_struct.h src/c/task2/lib/multi_thread/start_task.c)
+add_library(${PROJECT_NAME}_lib STATIC src/c/task2/lib/start_task.h src/c/task2/lib/main_struct.h src/c/task2/lib/one_thread/start_task.c src/c/task2/hard_init/hard_init.c src/c/task2/hard_init/hard_init.h)
+add_library(${PROJECT_NAME}_dynamic_lib SHARED src/c/task2/lib/start_task.h src/c/task2/lib/main_struct.h src/c/task2/lib/multi_thread/start_task.c src/c/task2/hard_init/hard_init.c src/c/task2/hard_init/hard_init.h)
 include_directories(${PROJECT_NAME}_lib src/c/task2/lib/)
 include_directories(${PROJECT_NAME}_dynamic_libsrc/c/task2/lib/)
 
-add_executable(stress_test_static src/test/stress_test_static.cpp)
-add_executable(stress_test_dynamic src/test/stress_test_dynamic.cpp)
-
+add_executable(stress_test_static src/test/stress_test_static.cpp src/c/task2/test_func/test_func.h src/c/task2/test_func/test_func.c)
+add_executable(stress_test_dynamic src/test/stress_test_dynamic.cpp src/c/task2/test_func/test_func.h src/c/task2/test_func/test_func.c)
 
 target_link_libraries(stress_test_static PRIVATE ${PROJECT_NAME}_lib GTest::GTest GTest::Main)
 target_link_libraries(stress_test_dynamic PRIVATE ${PROJECT_NAME}_dynamic_lib GTest::GTest GTest::Main)
 
-add_test(stress_test_static stress_test_static)
+add_test(stress_test_static stress_test_static )
 add_test(stress_test_dynamic stress_test_dynamic)
 
 

@@ -1,9 +1,9 @@
 //
 // Created by on 26.03.2021.
 //
+#include "start_task.h"
 #include <stdlib.h>
 #include "stdio.h"
-#include "../lib/main_struct.h"
 
 
 

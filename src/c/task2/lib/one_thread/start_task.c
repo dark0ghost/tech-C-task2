@@ -2,7 +2,6 @@
 // Created by dark0ghost on 26.03.2021.
 //
 #include "../start_task.h"
-#include "../main_struct.h"
 #include "stdio.h"
 #include <time.h>
 
