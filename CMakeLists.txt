@@ -2,12 +2,18 @@ cmake_minimum_required(VERSION 3.17)
 project(tech_c)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 
+
+set(CTEST_CMAKE_GENERATOR "Ninja")
+set(CTEST_COVERAGE_COMMAND "gcov")
+
+
 find_package(Threads REQUIRED)
-set(CMAKE_CXX_FLAGS "-Wall -Werror -Wpedantic -fpermissive")
+set(CMAKE_CXX_FLAGS "-Wall -Werror -Wpedantic -fpermissive --coverage")
 
 link_libraries(gcov)
 
